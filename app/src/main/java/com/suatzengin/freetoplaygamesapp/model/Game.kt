@@ -1,12 +1,15 @@
 package com.suatzengin.freetoplaygamesapp.model
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 import kotlinx.parcelize.Parcelize
 
+@Entity
 @Parcelize
 data class Game(
-    val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int,
     val title: String,
     val thumbnail: String,
     @Json(name = "short_description") val shortDescription: String,

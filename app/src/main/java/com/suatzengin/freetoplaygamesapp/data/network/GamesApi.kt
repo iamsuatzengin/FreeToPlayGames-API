@@ -1,4 +1,4 @@
-package com.suatzengin.freetoplaygamesapp.network
+package com.suatzengin.freetoplaygamesapp.data.network
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

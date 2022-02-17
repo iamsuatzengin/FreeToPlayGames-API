@@ -1,4 +1,4 @@
-package com.suatzengin.freetoplaygamesapp.network
+package com.suatzengin.freetoplaygamesapp.data.network
 
 import com.suatzengin.freetoplaygamesapp.model.Game
 import retrofit2.http.GET

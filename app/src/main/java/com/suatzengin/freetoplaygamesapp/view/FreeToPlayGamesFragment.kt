@@ -14,8 +14,12 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.suatzengin.freetoplaygamesapp.R
 import com.suatzengin.freetoplaygamesapp.adapter.GamesAdapter
+import com.suatzengin.freetoplaygamesapp.data.local.GamesDao
+import com.suatzengin.freetoplaygamesapp.data.local.GamesDatabase
+import com.suatzengin.freetoplaygamesapp.data.repository.GamesRepository
 import com.suatzengin.freetoplaygamesapp.databinding.FragmentFreeToPlayGamesBinding
 import com.suatzengin.freetoplaygamesapp.viewmodel.FreeToPlayGamesViewModel
+import com.suatzengin.freetoplaygamesapp.viewmodel.FreeToPlayGamesViewModelFactory
 
 
 class FreeToPlayGamesFragment : Fragment() {
@@ -31,16 +35,25 @@ class FreeToPlayGamesFragment : Fragment() {
         binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_free_to_play_games, container, false
         )
-        viewModel = ViewModelProvider(this)[FreeToPlayGamesViewModel::class.java]
+
+        val dao: GamesDao = GamesDatabase.getDatabase(requireContext()).gamesDao()
+        val repository = GamesRepository(dao)
+        val viewModelFactory = FreeToPlayGamesViewModelFactory(repository)
+
+        viewModel = ViewModelProvider(this, viewModelFactory)[FreeToPlayGamesViewModel::class.java]
         val adapter = GamesAdapter {
             val action = FreeToPlayGamesFragmentDirections.toDetail(it)
             findNavController().navigate(action)
         }
+
         binding.rvGames.adapter = adapter
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+
         viewModel.games.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
-        })
 
+        })
 
         return binding.root
     }

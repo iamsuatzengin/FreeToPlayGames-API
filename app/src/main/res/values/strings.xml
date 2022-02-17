@@ -7,4 +7,5 @@
     <string name="favorites_menu_string">Favorites</string>
     <string name="add_favorite_menu_string">Add Favorite</string>
     <string name="desc_thumbnail_image">Image for Game\'s Thumbnail</string>
+    <string name="status_image_string">Status image</string>
 </resources>

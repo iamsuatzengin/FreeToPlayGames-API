@@ -13,4 +13,8 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    
+    <style name="ThemeOverlay.IconTheme" parent="Theme.AppCompat.Light">
+        <item name="backgroundColor">@color/icon</item>
+    </style>
 </resources>
