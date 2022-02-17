@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/home">
+
+    <fragment
+        android:id="@+id/home"
+        android:name="com.suatzengin.freetoplaygamesapp.view.FreeToPlayGamesFragment"
+        android:label="Free-to-play Games"
+        tools:layout="@layout/fragment_free_to_play_games">
+        <action
+            android:id="@+id/toDetail"
+            app:destination="@id/freeToPlayGameDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/freeToPlayGameDetailFragment"
+        android:name="com.suatzengin.freetoplaygamesapp.view.FreeToPlayGameDetailFragment"
+        android:label="Detail"
+        tools:layout="@layout/fragment_free_to_play_game_detail">
+        <argument
+            android:name="game"
+            app:argType="com.suatzengin.freetoplaygamesapp.model.Game" />
+    </fragment>
+    <fragment
+        android:id="@+id/favorites"
+        android:name="com.suatzengin.freetoplaygamesapp.view.FavoritesFragment"
+        android:label="Favorites"
+        tools:layout="@layout/fragment_favorites" />
+</navigation>

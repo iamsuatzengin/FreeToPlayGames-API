@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">FreeToPlayGamesApp</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btn_link">LINK</string>
+    <string name="thumbnail_desc">Free to play games thumbnail</string>
+    <string name="home_menu_string">Home</string>
+    <string name="favorites_menu_string">Favorites</string>
+    <string name="add_favorite_menu_string">Add Favorite</string>
+    <string name="desc_thumbnail_image">Image for Game\'s Thumbnail</string>
+</resources>
