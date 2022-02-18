@@ -8,9 +8,13 @@ import com.suatzengin.freetoplaygamesapp.model.Game
 class FavoritesViewHolder(
     private val binding: FavoritesItemBinding
 ): RecyclerView.ViewHolder(binding.root) {
-    fun bind(game: Game) {
+    fun bind(game: Game, onItemClick: (Game) -> Unit) {
         binding.game = game
         binding.executePendingBindings()
+
+        binding.cardFav.setOnClickListener {
+            onItemClick(game)
+        }
     }
 
 

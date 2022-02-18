@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.suatzengin.freetoplaygamesapp.model.Game
 
-@Database(entities = [Game::class], version = 1, exportSchema = false)
+@Database(entities = [Game::class], version = 3, exportSchema = false)
 abstract class GamesDatabase: RoomDatabase() {
 
     abstract fun gamesDao(): GamesDao
@@ -20,7 +20,7 @@ abstract class GamesDatabase: RoomDatabase() {
             return INSTANCE ?: synchronized(this){
                 val instance = Room.databaseBuilder(
                     context, GamesDatabase::class.java, "favorite_games_db"
-                ).build()
+                ).fallbackToDestructiveMigration().build()
                 INSTANCE = instance
                 return instance
             }

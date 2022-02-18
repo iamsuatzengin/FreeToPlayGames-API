@@ -5,10 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.suatzengin.freetoplaygamesapp.databinding.FavoritesItemBinding
-import com.suatzengin.freetoplaygamesapp.databinding.RvItemBinding
+
 import com.suatzengin.freetoplaygamesapp.model.Game
 
-class FavoritesAdapter : ListAdapter<Game, FavoritesViewHolder>(DiffCallBack) {
+class FavoritesAdapter(private val onItemClick: (Game) -> Unit) :
+    ListAdapter<Game, FavoritesViewHolder>(DiffCallBack) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoritesViewHolder {
         return FavoritesViewHolder(
@@ -18,7 +19,7 @@ class FavoritesAdapter : ListAdapter<Game, FavoritesViewHolder>(DiffCallBack) {
 
     override fun onBindViewHolder(holder: FavoritesViewHolder, position: Int) {
         val game = getItem(position)
-        holder.bind(game)
+        holder.bind(game, onItemClick)
     }
 
 
