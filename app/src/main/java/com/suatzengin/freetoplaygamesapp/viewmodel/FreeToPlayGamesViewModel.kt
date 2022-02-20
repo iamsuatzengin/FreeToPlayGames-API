@@ -4,6 +4,7 @@ package com.suatzengin.freetoplaygamesapp.viewmodel
 import androidx.lifecycle.*
 import com.suatzengin.freetoplaygamesapp.model.Game
 import com.suatzengin.freetoplaygamesapp.data.network.GamesApi
+import com.suatzengin.freetoplaygamesapp.data.network.GamesApiFilter
 import com.suatzengin.freetoplaygamesapp.data.network.GamesApiStatus
 import com.suatzengin.freetoplaygamesapp.data.repository.GamesRepository
 import kotlinx.coroutines.launch
@@ -21,21 +22,24 @@ class FreeToPlayGamesViewModel(
         get() = _status
 
     init {
-        getGames()
+        getGames(GamesApiFilter.SHOW_ALL)
     }
 
-    private fun getGames() {
+    private fun getGames(filter: GamesApiFilter) {
         viewModelScope.launch {
             _status.value = GamesApiStatus.LOADING
             try {
 //                _games.value = GamesApi.retrofitService.getGames()
-                _games.value = repository.games()
+                _games.value = repository.games(filter)
                 _status.value = GamesApiStatus.DONE
             } catch (e: Exception) {
                 _games.value = ArrayList()
                 _status.value = GamesApiStatus.ERROR
             }
         }
+    }
+    fun updateFilter(filter: GamesApiFilter){
+        getGames(filter)
     }
 }
 

@@ -16,6 +16,7 @@ import com.suatzengin.freetoplaygamesapp.R
 import com.suatzengin.freetoplaygamesapp.adapter.GamesAdapter
 import com.suatzengin.freetoplaygamesapp.data.local.GamesDao
 import com.suatzengin.freetoplaygamesapp.data.local.GamesDatabase
+import com.suatzengin.freetoplaygamesapp.data.network.GamesApiFilter
 import com.suatzengin.freetoplaygamesapp.data.repository.GamesRepository
 import com.suatzengin.freetoplaygamesapp.databinding.FragmentFreeToPlayGamesBinding
 import com.suatzengin.freetoplaygamesapp.viewmodel.FreeToPlayGamesViewModel
@@ -54,8 +55,31 @@ class FreeToPlayGamesFragment : Fragment() {
             adapter.submitList(it)
 
         })
-
+        binding.chipGroup.isSelectionRequired = true
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        binding.apply {
+            chipAll.setOnCheckedChangeListener { _, isChecked ->
+                if(isChecked){
+                    viewModel!!.updateFilter(GamesApiFilter.SHOW_ALL)
+                }
+            }
+            chipBrowser.setOnCheckedChangeListener { _, isChecked ->
+                if(isChecked){
+                    viewModel!!.updateFilter(GamesApiFilter.SHOW_BROWSER)
+                }
+            }
+            chipPc.setOnCheckedChangeListener { _, isChecked ->
+                if(isChecked){
+                    viewModel!!.updateFilter(GamesApiFilter.SHOW_PC)
+                }
+            }
+        }
     }
 
 }

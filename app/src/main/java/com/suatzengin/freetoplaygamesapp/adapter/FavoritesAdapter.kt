@@ -20,10 +20,12 @@ class FavoritesAdapter(private val onItemClick: (Game) -> Unit) :
     override fun onBindViewHolder(holder: FavoritesViewHolder, position: Int) {
         val game = getItem(position)
         holder.bind(game, onItemClick)
+
     }
 
 
     companion object DiffCallBack : DiffUtil.ItemCallback<Game>() {
+
         override fun areItemsTheSame(oldItem: Game, newItem: Game): Boolean {
             return oldItem == newItem
         }

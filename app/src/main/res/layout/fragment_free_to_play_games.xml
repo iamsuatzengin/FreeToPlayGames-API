@@ -15,16 +15,52 @@
         android:layout_height="match_parent"
         tools:context=".view.FreeToPlayGamesFragment">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvGames"
-            android:layout_width="match_parent"
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="6dp"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:singleLine="true"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipAll"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="All" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipPc"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PC" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipBrowser"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="Browser" />
+
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvGames"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="6dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chipGroup"
             app:spanCount="2"
             tools:listitem="@layout/rv_item" />
 
@@ -32,12 +68,13 @@
             android:id="@+id/status_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/status_image_string"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:status="@{viewModel.status}"
-            android:contentDescription="@string/status_image_string"/>
+            app:status="@{viewModel.status}" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
