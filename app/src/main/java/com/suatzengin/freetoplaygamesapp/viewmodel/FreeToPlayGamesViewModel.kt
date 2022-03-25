@@ -44,15 +44,3 @@ class FreeToPlayGamesViewModel @Inject constructor(
         getGames(filter)
     }
 }
-
-class FreeToPlayGamesViewModelFactory(
-    private val repository: GamesRepository
-): ViewModelProvider.Factory{
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        @Suppress("UNCHECKED_CAST")
-        if(modelClass.isAssignableFrom(FreeToPlayGamesViewModel::class.java)){
-            return FreeToPlayGamesViewModel(repository) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
-}

@@ -9,22 +9,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.suatzengin.freetoplaygamesapp.R
 import com.suatzengin.freetoplaygamesapp.adapter.FavoritesAdapter
-import com.suatzengin.freetoplaygamesapp.data.local.GamesDao
-import com.suatzengin.freetoplaygamesapp.data.local.GamesDatabase
-import com.suatzengin.freetoplaygamesapp.data.repository.GamesRepository
 import com.suatzengin.freetoplaygamesapp.databinding.FragmentFavoritesBinding
 import com.suatzengin.freetoplaygamesapp.model.Game
 import com.suatzengin.freetoplaygamesapp.viewmodel.FavoritesSharedViewModel
-import com.suatzengin.freetoplaygamesapp.viewmodel.FavoritesSharedViewModelFactory
+
 
 class FavoritesFragment : Fragment() {
 

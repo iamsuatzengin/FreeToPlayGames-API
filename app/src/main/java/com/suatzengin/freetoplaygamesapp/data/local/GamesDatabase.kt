@@ -1,8 +1,6 @@
 package com.suatzengin.freetoplaygamesapp.data.local
 
-import android.content.Context
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.suatzengin.freetoplaygamesapp.model.Game
 
@@ -10,21 +8,5 @@ import com.suatzengin.freetoplaygamesapp.model.Game
 abstract class GamesDatabase: RoomDatabase() {
 
     abstract fun gamesDao(): GamesDao
-/*
-    companion object{
 
-        @Volatile
-        private var INSTANCE: GamesDatabase? = null
-
-        fun getDatabase(context: Context): GamesDatabase{
-            return INSTANCE ?: synchronized(this){
-                val instance = Room.databaseBuilder(
-                    context, GamesDatabase::class.java, "favorite_games_db"
-                ).fallbackToDestructiveMigration().build()
-                INSTANCE = instance
-                return instance
-            }
-        }
-
-    }*/
 }

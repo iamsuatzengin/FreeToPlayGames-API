@@ -32,15 +32,3 @@ class FavoritesSharedViewModel @Inject constructor(
 
 }
 
-
-class FavoritesSharedViewModelFactory(private val repository: GamesRepository) :
-    ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        @Suppress("UNCHECKED_CAST")
-        if (modelClass.isAssignableFrom(FavoritesSharedViewModel::class.java)) {
-            return FavoritesSharedViewModel(repository) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
-}
-
