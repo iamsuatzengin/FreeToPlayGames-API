@@ -2,15 +2,19 @@ package com.suatzengin.freetoplaygamesapp.data.repository
 
 
 import com.suatzengin.freetoplaygamesapp.data.local.GamesDao
-import com.suatzengin.freetoplaygamesapp.data.network.GamesApi
 import com.suatzengin.freetoplaygamesapp.data.network.GamesApiFilter
+import com.suatzengin.freetoplaygamesapp.data.network.GamesApiService
 import com.suatzengin.freetoplaygamesapp.model.Game
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class GamesRepository(private val dao: GamesDao) {
+class GamesRepository @Inject constructor(
+    private val dao: GamesDao,
+    private val gamesApi: GamesApiService
+) {
 
     suspend fun games(filter: GamesApiFilter): List<Game> =
-        GamesApi.retrofitService.getGames(filter.value)
+        gamesApi.getGames(filter.value)
 
     suspend fun addGameFavorites(game: Game) = dao.insert(game)
 

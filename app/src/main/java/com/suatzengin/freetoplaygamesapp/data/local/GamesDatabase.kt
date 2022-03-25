@@ -10,7 +10,7 @@ import com.suatzengin.freetoplaygamesapp.model.Game
 abstract class GamesDatabase: RoomDatabase() {
 
     abstract fun gamesDao(): GamesDao
-
+/*
     companion object{
 
         @Volatile
@@ -26,5 +26,5 @@ abstract class GamesDatabase: RoomDatabase() {
             }
         }
 
-    }
+    }*/
 }

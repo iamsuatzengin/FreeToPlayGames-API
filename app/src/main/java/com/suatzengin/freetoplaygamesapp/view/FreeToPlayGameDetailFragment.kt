@@ -8,6 +8,7 @@ import android.widget.Toast
 
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -19,14 +20,15 @@ import com.suatzengin.freetoplaygamesapp.data.repository.GamesRepository
 import com.suatzengin.freetoplaygamesapp.databinding.FragmentFreeToPlayGameDetailBinding
 import com.suatzengin.freetoplaygamesapp.viewmodel.FavoritesSharedViewModel
 import com.suatzengin.freetoplaygamesapp.viewmodel.FavoritesSharedViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class FreeToPlayGameDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentFreeToPlayGameDetailBinding
     private val args: FreeToPlayGameDetailFragmentArgs by navArgs()
 
-    private lateinit var viewModel: FavoritesSharedViewModel
+    private val viewModel: FavoritesSharedViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,12 +42,6 @@ class FreeToPlayGameDetailFragment : Fragment() {
         )
         binding.game = args.game
 
-        val dao: GamesDao = GamesDatabase.getDatabase(requireContext()).gamesDao()
-        val repository = GamesRepository(dao)
-        val factory = FavoritesSharedViewModelFactory(repository)
-        viewModel =
-            ViewModelProvider(requireActivity(), factory)[FavoritesSharedViewModel::class.java]
-
         setHasOptionsMenu(true)
 
         return binding.root
@@ -55,9 +51,7 @@ class FreeToPlayGameDetailFragment : Fragment() {
         viewModel.addGameFavorites(args.game)
     }
 
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
         when (item.itemId) {
             R.id.favorite -> {
                 addFavorites()
@@ -80,7 +74,6 @@ class FreeToPlayGameDetailFragment : Fragment() {
                 icon.setTint(resources.getColor(R.color.icon))
             }
         })
-
         super.onCreateOptionsMenu(menu, inflater)
     }
 }

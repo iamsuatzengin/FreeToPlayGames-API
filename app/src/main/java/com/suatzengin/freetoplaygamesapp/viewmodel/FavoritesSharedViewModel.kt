@@ -3,9 +3,12 @@ package com.suatzengin.freetoplaygamesapp.viewmodel
 import androidx.lifecycle.*
 import com.suatzengin.freetoplaygamesapp.data.repository.GamesRepository
 import com.suatzengin.freetoplaygamesapp.model.Game
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class FavoritesSharedViewModel(
+@HiltViewModel
+class FavoritesSharedViewModel @Inject constructor(
     private val repository: GamesRepository
 ) : ViewModel() {
 

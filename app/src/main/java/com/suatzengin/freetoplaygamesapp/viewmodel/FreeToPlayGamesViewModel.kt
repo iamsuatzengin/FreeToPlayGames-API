@@ -3,13 +3,15 @@ package com.suatzengin.freetoplaygamesapp.viewmodel
 
 import androidx.lifecycle.*
 import com.suatzengin.freetoplaygamesapp.model.Game
-import com.suatzengin.freetoplaygamesapp.data.network.GamesApi
 import com.suatzengin.freetoplaygamesapp.data.network.GamesApiFilter
 import com.suatzengin.freetoplaygamesapp.data.network.GamesApiStatus
 import com.suatzengin.freetoplaygamesapp.data.repository.GamesRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class FreeToPlayGamesViewModel(
+@HiltViewModel
+class FreeToPlayGamesViewModel @Inject constructor(
     private val repository: GamesRepository
 ) : ViewModel() {
 

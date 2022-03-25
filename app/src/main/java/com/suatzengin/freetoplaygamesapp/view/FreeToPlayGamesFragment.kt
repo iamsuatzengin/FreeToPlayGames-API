@@ -21,12 +21,13 @@ import com.suatzengin.freetoplaygamesapp.data.repository.GamesRepository
 import com.suatzengin.freetoplaygamesapp.databinding.FragmentFreeToPlayGamesBinding
 import com.suatzengin.freetoplaygamesapp.viewmodel.FreeToPlayGamesViewModel
 import com.suatzengin.freetoplaygamesapp.viewmodel.FreeToPlayGamesViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class FreeToPlayGamesFragment : Fragment() {
 
     private lateinit var binding: FragmentFreeToPlayGamesBinding
-    private lateinit var viewModel: FreeToPlayGamesViewModel
+    private val viewModel: FreeToPlayGamesViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,12 +37,14 @@ class FreeToPlayGamesFragment : Fragment() {
         binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_free_to_play_games, container, false
         )
-
+/*
         val dao: GamesDao = GamesDatabase.getDatabase(requireContext()).gamesDao()
         val repository = GamesRepository(dao)
         val viewModelFactory = FreeToPlayGamesViewModelFactory(repository)
 
         viewModel = ViewModelProvider(this, viewModelFactory)[FreeToPlayGamesViewModel::class.java]
+
+        */
         val adapter = GamesAdapter {
             val action = FreeToPlayGamesFragmentDirections.toDetail(it)
             findNavController().navigate(action)

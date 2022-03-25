@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -27,7 +29,7 @@ import com.suatzengin.freetoplaygamesapp.viewmodel.FavoritesSharedViewModelFacto
 class FavoritesFragment : Fragment() {
 
     private lateinit var binding: FragmentFavoritesBinding
-    private lateinit var viewModel: FavoritesSharedViewModel
+    private val viewModel: FavoritesSharedViewModel by activityViewModels()
     private lateinit var adapter: FavoritesAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,14 +39,7 @@ class FavoritesFragment : Fragment() {
             inflater, R.layout.fragment_favorites, container, false
         )
 
-        val dao: GamesDao = GamesDatabase.getDatabase(requireContext()).gamesDao()
-        val repository = GamesRepository(dao)
-        val factory = FavoritesSharedViewModelFactory(repository)
-
-        viewModel =
-            ViewModelProvider(requireActivity(), factory)[FavoritesSharedViewModel::class.java]
-
-        adapter = FavoritesAdapter{
+        adapter = FavoritesAdapter {
             val action = FavoritesFragmentDirections.fromFavToDetail(it)
             findNavController().navigate(action)
         }
@@ -60,17 +55,17 @@ class FavoritesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-       gameList()
+        gameList()
 
     }
 
-    private fun gameList(){
+    private fun gameList() {
         viewModel.games.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
         })
     }
 
-    private fun alertDialog(position: Int){
+    private fun alertDialog(position: Int) {
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle("Delete Message!")
             .setMessage("Are you sure to delete this game from Favorites?")
