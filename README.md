@@ -13,6 +13,7 @@ with Free-to-Play Games API, we can see free games and add our favorites. We can
   <li>Hilt for dependency injection</li>
   <li>Data Binding</li>
   <li>Kotlin-Parcelize</li>
+  <li>DiffUtil</li>
 </ul>
 
 <img src="https://user-images.githubusercontent.com/67907559/160138571-5f1b8cdc-4afa-4360-a4e9-923e59bd9603.png" width="30%"></img> 
